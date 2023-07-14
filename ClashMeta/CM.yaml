@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/5/23
+# 最后更新时间: 2023/7/14
 #
 # ================
 
@@ -26,7 +26,7 @@ global-client-fingerprint: chrome   #全局 TLS 指纹，优先低于 proxy 内�
 geox-url:             #自定义 geodata url
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  #mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
 
 profile:
   store-selected: true # 存储 select 选择记录
@@ -151,16 +151,6 @@ dns:
       - geolocation-!cn
     ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
       - 240.0.0.0/4
-    domain:               # 这些域名被视为已污染,匹配到这些域名,会直接使用fallback解析,不去使用nameserver
-      - '+.google.com'
-      - '+.github.com'
-      - '+.youtube.com'  
-      - "+.bing.com"
-      - "+.bing.net"
-      - "+.microsoft.com"
-      - "+.microsoftapp.net"
-      - "+.msn.com"
-      - "+.trafficmanager.com"
       
 ###建立锚点
     
@@ -254,7 +244,7 @@ rules:
   - GEOIP,private,DIRECT
   - GEOSITE,category-games,🎮 游戏平台
   - GEOSITE,openai,🤖 OpenAI
-  - GEOSITE,youtube,📹 国际媒体
+  - GEOSITE,youtube,🌌 谷歌服务
   - GEOIP,netflix,📹 国际媒体
   - GEOSITE,netflix,📹 国际媒体
   - GEOSITE,hbo,📹 国际媒体

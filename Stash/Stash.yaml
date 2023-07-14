@@ -104,15 +104,11 @@ dns:
     geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
     ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
       - 240.0.0.0/4
-    domain:               # 这些域名被视为已污染,匹配到这些域名,会直接使用fallback解析,不去使用nameserver
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
        
 ###建立锚点
 
 # 策略组引用相关
-pr: &pr {type: select, proxies: [自动选择, 手动切换, 香港节点, 日本节点, 美国节点, 台湾节点, 狮城节点, 英国节点, 澳洲节点, 印度节点, DIRECT]}
+pr: &pr {type: select, proxies: [自动选择, 手动切换, 香港节点, 日本节点, 美国节点, 台湾节点, 狮城节点, DIRECT]}
 
 # 订阅更新和延迟测试相关
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1800}}
@@ -187,12 +183,6 @@ proxy-groups:
 
  - {name: 台湾节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png, <<: *auto, filter: "^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
   
- - {name: 英国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png, <<: *auto, filter: "^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-  
- - {name: 澳洲节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png, <<: *auto, filter: "^(?=.*((?i)🇦🇺|澳大利亚|(\b(AU|Australia)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
- 
- - {name: 印度节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png, <<: *auto, filter: "^(?=.*((?i)🇮🇳|印度|班加罗尔|孟买|(\b(Mumbai|IN|India)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
 
 rules:
   - SCRIPT,quic,REJECT
@@ -201,7 +191,7 @@ rules:
   - GEOIP,private,DIRECT
   - GEOSITE,openai,OpenAI
   - GEOSITE,category-games,游戏平台
-  - GEOSITE,youtube,国际媒体
+  - GEOSITE,youtube,谷歌服务
   - GEOIP,netflix,国际媒体
   - GEOSITE,netflix,国际媒体
   - GEOSITE,hbo,国际媒体

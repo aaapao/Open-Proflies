@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/5/23
+# 最后更新时间: 2023/7/14
 #
 # ================
 
@@ -141,10 +141,6 @@ dns:
     geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
     ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
       - 240.0.0.0/4
-    domain:               # 这些域名被视为已污染,匹配到这些域名,会直接使用fallback解析,不去使用nameserver
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
        
 ###建立锚点
     
@@ -264,6 +260,7 @@ rule-providers:
  Github: {<<: *c, path: ./ruleset/Github.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml}
 
  # 谷歌服务
+ Youtube: {<<: *c, path: ./ruleset/Youtube.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml}
  Google: {<<: *c, path: ./ruleset/Google.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml}
 
  # 电报消息
@@ -299,6 +296,7 @@ rules:
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Microsoft,🧩 微软服务
   - RULE-SET,Github,🧩 微软服务  
+  - RULE-SET,Youtube,🌌 谷歌服务
   - RULE-SET,Google,🌌 谷歌服务
   - RULE-SET,Telegram,📟 电报消息
   - RULE-SET,Twitter,🐦 推特消息

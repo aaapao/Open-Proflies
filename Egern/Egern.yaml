@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/5/23
+# 最后更新时间: 2023/7/14
 #
 # ================
 
@@ -192,10 +192,6 @@ rules: #分流规则
       match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
       policy: 🤖 OpenAI
 
-  - rule_set: #国际媒体
-      match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"
-      policy: 📹 国际媒体
-
   - rule_set: #电报
       match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Telegram.list"
       policy: 📟 电报消息
@@ -215,6 +211,10 @@ rules: #分流规则
   - rule_set: #谷歌
       match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
       policy: 🌌 谷歌服务
+
+  - rule_set: #国际媒体
+      match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"
+      policy: 📹 国际媒体
 
   - rule_set: #国外网站
       match: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.listl"

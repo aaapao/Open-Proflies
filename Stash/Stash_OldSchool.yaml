@@ -112,7 +112,7 @@ dns:
 ###建立锚点
 
 # 策略组引用相关
-pr: &pr {type: select, proxies: [自动选择, 手动切换, 香港节点, 日本节点, 美国节点, 台湾节点, 狮城节点, 英国节点, 澳洲节点, 印度节点, DIRECT]}
+pr: &pr {type: select, proxies: [自动选择, 手动切换, 香港节点, 日本节点, 美国节点, 台湾节点, 狮城节点, DIRECT]}
 
 # 订阅更新和延迟测试相关
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1800}}
@@ -187,11 +187,6 @@ proxy-groups:
 
  - {name: 狮城节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
   
- - {name: 英国节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png, <<: *auto, filter: "^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-  
- - {name: 澳洲节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png, <<: *auto, filter: "^(?=.*((?i)🇦🇺|澳大利亚|(\b(AU|Australia)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
- 
- - {name: 印度节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png, <<: *auto, filter: "^(?=.*((?i)🇮🇳|印度|班加罗尔|孟买|(\b(Mumbai|IN|India)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
 rule-providers:
 
@@ -217,6 +212,7 @@ rule-providers:
  Microsoft: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml}
 
  # 谷歌服务
+ Youtube: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Youtube.yaml}
  Google: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml}
 
  # 电报消息
@@ -246,14 +242,15 @@ rules:
  - RULE-SET,HTTPDNS,广告拦截
  - RULE-SET,Anti-AD,广告拦截
  - RULE-SET,OpenAI,OpenAI
- - RULE-SET,ProxyMedia,国际媒体
  - RULE-SET,Apple,苹果服务
  - RULE-SET,Microsoft,微软服务
+ - RULE-SET,Youtube,谷歌服务
  - RULE-SET,Google,谷歌服务
  - RULE-SET,Twitter,推特消息
  - RULE-SET,Telegram,电报消息
  - RULE-SET,BiliBili,哔哩哔哩
  - RULE-SET,Game,游戏平台
+ - RULE-SET,ProxyMedia,国际媒体
  - RULE-SET,ProxyLite,国外网站
  - RULE-SET,ChinaIp,DIRECT
  - GEOIP,CN,DIRECT
