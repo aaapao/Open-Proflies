@@ -212,7 +212,7 @@ rule-providers:
  Microsoft: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml}
 
  # 谷歌服务
- Youtube: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Youtube.yaml}
+ Youtube: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml}
  Google: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml}
 
  # 电报消息
