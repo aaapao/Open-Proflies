@@ -1,0 +1,12 @@
+#!name = CaiYunPRO
+#!desc = Unclokck
+#!author = RuCu6
+#!update = 2023-07-18 18:58
+
+[Script]
+caiyun = type=http-response, pattern=^https:\/\/biz\.cyapi\.cn\/(p\/v1\/vip_info|v2\/user), requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/break/caiyun.js, timeout=60, script-update-interval=86400
+
+
+[MITM]
+
+hostname = %APPEND% biz.cyapi.cn
