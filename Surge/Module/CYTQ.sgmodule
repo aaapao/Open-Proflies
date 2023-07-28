@@ -1,12 +1,15 @@
-#!name = CaiYunPRO
-#!desc = Unclokck
-#!author = RuCu6
-#!update = 2023-07-18 18:58
+#!name=彩云天气
+#!desc= 解锁会员&晒图活动图标 @RuCu6
 
 [Script]
+# 彩云天气 //biz.cyapi.cn
 caiyun = type=http-response, pattern=^https:\/\/biz\.cyapi\.cn\/(p\/v1\/vip_info|v2\/user), requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/break/caiyun.js, timeout=60, script-update-interval=86400
+
+[Map Local]
+
+^https:\/\/wrapper\.cyapi\.cn\/v1\/activity\? data="https://raw.githubusercontent.com/mieqq/mieqq/master/reject-dict.json"
 
 
 [MITM]
 
-hostname = %APPEND% biz.cyapi.cn
+hostname = %APPEND% biz.cyapi.cn,wrapper.cyapi.cn
