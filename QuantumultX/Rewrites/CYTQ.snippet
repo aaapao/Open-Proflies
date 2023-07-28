@@ -1,8 +1,10 @@
 #!name = CaiYunPRO
-#!desc = Unclokck
+#!desc = Unclokck & 移除晒图活动图标
 #!author = RuCu6
-#!update = 2023-07-18 18:58
+#!update = 2023-07-28 10:05
 
+# 彩云天气 //biz.cyapi.cn, wrapper.cyapi.cn
 ^https:\/\/biz\.cyapi\.cn\/(p\/v1\/vip_info|v2\/user) url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/break/caiyun.js
+^https:\/\/wrapper\.cyapi\.cn\/v1\/activity\? url reject-dict
 
-hostname = biz.cyapi.cn
+hostname = biz.cyapi.cn,wrapper.cyapi.cn
