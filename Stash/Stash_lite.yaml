@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/7/14
+# 最后更新时间: 2023/7/28
 #
 # ================
 
@@ -27,72 +27,8 @@ dns:
      - 223.5.5.5
      - 119.29.29.29
   fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
-  fake-ip-filter:          # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
-     - '*.lan' 
-     - 'cable.auth.com' 
-     - '*.msftconnecttest.com' 
-     - '*.msftncsi.com' 
-     - 'network-test.debian.org'
-     - 'detectportal.firefox.com' 
-     - 'resolver1.opendns.com' 
-     - '*.srv.nintendo.net' 
-     - '*.stun.playstation.net' 
-     - 'xbox.*.microsoft.com' 
-     - '*.xboxlive.com' 
-     - 'stun.*' 
-     - 'global.turn.twilio.com' 
-     - 'global.stun.twilio.com' 
-     - 'localhost.*.qq.com' 
-     - 'localhost.*.weixin.qq.com' 
-     - '*.logon.battlenet.com.cn' 
-     - '*.logon.battle.net' 
-     - '*.blzstatic.cn' 
-     - 'music.163.com' 
-     - '*.music.163.com' 
-     - '*.126.net' 
-     - 'musicapi.taihe.com' 
-     - 'music.taihe.com' 
-     - 'songsearch.kugou.com' 
-     - 'trackercdn.kugou.com' 
-     - '*.kuwo.cn' 
-     - 'api-jooxtt.sanook.com' 
-     - 'api.joox.com' 
-     - 'joox.com' 
-     - 'y.qq.com' 
-     - '*.y.qq.com' 
-     - 'streamoc.music.tc.qq.com' 
-     - 'mobileoc.music.tc.qq.com' 
-     - 'isure.stream.qqmusic.qq.com' 
-     - 'dl.stream.qqmusic.qq.com' 
-     - 'aqqmusic.tc.qq.com' 
-     - 'amobile.music.tc.qq.com' 
-     - '*.xiami.com' 
-     - '*.music.migu.cn' 
-     - 'music.migu.cn' 
-     - 'proxy.golang.org' 
-     - '*.mcdn.bilivideo.cn' 
-     - '*.cmpassport.com' 
-     - 'id6.me' 
-     - 'open.e.189.cn' 
-     - 'mdn.open.wo.cn' 
-     - 'opencloud.wostore.cn' 
-     - 'auth.wosms.cn' 
-     - '*.jegotrip.com.cn' 
-     - '*.icitymobile.mobi' 
-     - '*.pingan.com.cn' 
-     - '*.cmbchina.com' 
-     - 'pool.ntp.org' 
-     - '*.pool.ntp.org' 
-     - 'ntp.*.com' 
-     - 'time.*.com' 
-     - 'ntp?.*.com' 
-     - 'time?.*.com' 
-     - 'time.*.gov' 
-     - 'time.*.edu.cn' 
-     - '*.ntp.org.cn' 
-     - 'PDC._msDCS.*.*' 
-     - 'DC._msDCS.*.*' 
-     - 'GC._msDCS.*.*'
+  fake-ip-filter: ['*.lan', 'cable.auth.com', '*.msftconnecttest.com', '*.msftncsi.com', 'network-test.debian.org', 'detectportal.firefox.com', 'resolver1.opendns.com', '*.srv.nintendo.net', '*.stun.playstation.net', 'xbox.*.microsoft.com', '*.xboxlive.com', 'stun.*', 'global.turn.twilio.com', 'global.stun.twilio.com', 'localhost.*.qq.com', 'localhost.*.weixin.qq.com', '*.logon.battlenet.com.cn', '*.logon.battle.net', '*.blzstatic.cn', 'music.163.com', '*.music.163.com', '*.126.net', 'musicapi.taihe.com', 'music.taihe.com', 'songsearch.kugou.com', 'trackercdn.kugou.com', '*.kuwo.cn', 'api-jooxtt.sanook.com', 'api.joox.com', 'joox.com', 'y.qq.com', '*.y.qq.com', 'streamoc.music.tc.qq.com', 'mobileoc.music.tc.qq.com', 'isure.stream.qqmusic.qq.com', 'dl.stream.qqmusic.qq.com', 'aqqmusic.tc.qq.com', 'amobile.music.tc.qq.com', '*.xiami.com', '*.music.migu.cn', 'music.migu.cn', 'proxy.golang.org', '*.mcdn.bilivideo.cn', '*.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '*.jegotrip.com.cn', '*.icitymobile.mobi', '*.pingan.com.cn', '*.cmbchina.com', 'pool.ntp.org', '*.pool.ntp.org', 'ntp.*.com', 'time.*.com', 'ntp?.*.com', 'time?.*.com', 'time.*.gov', 'time.*.edu.cn', '*.ntp.org.cn', 'PDC._msDCS.*.*', 'DC._msDCS.*.*', 'GC._msDCS.*.*']
+                          # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
   nameserver:             # 默认DNS服务器，支持udp/tcp/dot/doh/doq
      - 223.5.5.5
      - 119.29.29.29
@@ -102,22 +38,28 @@ dns:
   fallback-filter:        # 配置 fallback 使用条件
     geoip: true           # 配置是否使用 geoip
     geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
-    ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
-      - 240.0.0.0/4
-       
+    ipcidr: [240.0.0.0/4] # 在这个网段内的 IP 地址会被考虑为被污染的 IP
+
 ###建立锚点
+    
+# 策略组引用相关参数
+pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
+#pr: &pr {type: select, proxies: [🚀 手动切换,  🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, ♻️ 自动选择, DIRECT]}
 
-# 策略组引用相关
-pr: &pr {type: select, proxies: [自动选择, 手动切换, DIRECT]}
+# 订阅更新和延迟测试相关参数
+p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
 
-# 订阅更新和延迟测试相关
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1800}}
+# 自动选择策略组：选取延迟最低节点
+auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
 
-# 自动选择相关
-auto: &auto {type: url-test, lazy: true, url: https://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+# 手动选择策略组：手动选择想要的节点/策略组
+select: &select {type: select, use: [Subscribe]}
 
-# 手动选择相关
-use: &use {type: select, use: [Subscribe]}
+# 故障回退策略组：策略组将按顺序选择你列表中第一个可用的节点
+fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+
+# 负载均衡策略组：不同的请求将使用不同的代理节点
+load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
 
 # classical规则相关
 c: &c {type: http, behavior: classical, interval: 86400}
@@ -146,7 +88,7 @@ proxy-groups:
 
  - {name: 国际媒体, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png, <<: *pr}
 
- - {name: 手动切换,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png, <<: *use}  
+ - {name: 手动切换,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png, <<: *select}  
 
  - {name: 自动选择,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png, <<: *auto}
   
