@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/7/28
+# 最后更新时间: 2023/7/30
 #
 # ================
 
@@ -111,8 +111,6 @@ proxy-groups:
 
  # 节点地区分流
 
- - {name: 自动选择,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png, <<: *auto}
-
  - {name: 手动切换,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png, <<: *select}
  
  - {name: 香港节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
@@ -125,6 +123,7 @@ proxy-groups:
 
  - {name: 狮城节点, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
   
+ - {name: 自动选择,  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png, <<: *auto}
 
 rule-providers:
 
@@ -175,7 +174,7 @@ rule-providers:
  ProxyLite: {<<: *d, purl: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyLite.yaml}
 
 rules:
- - SCRIPT,quic,REJECT
+ #- SCRIPT,quic,REJECT
  - RULE-SET,Lan,DIRECT
  - RULE-SET,HTTPDNS,广告拦截
  - RULE-SET,Anti-AD,广告拦截
