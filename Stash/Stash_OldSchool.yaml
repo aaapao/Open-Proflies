@@ -178,7 +178,7 @@ rules:
  - RULE-SET,Telegram,电报消息
  - RULE-SET,BiliBili,哔哩哔哩
  - RULE-SET,Game,游戏平台
- - RULE-SET,GlobalMediaa,国际媒体
+ - RULE-SET,GlobalMedia,国际媒体
  - RULE-SET,ProxyLite,国外网站
  - RULE-SET,ChinaIP,DIRECT
  - GEOIP,CN,DIRECT
