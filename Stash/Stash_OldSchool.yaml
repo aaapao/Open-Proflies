@@ -170,7 +170,7 @@ rule-providers:
  ChinaIP: {<<: *i, url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml}
 
  # 代理网站
- ProxyLite: {<<: *d, purl: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyLite.yaml}
+ ProxyLite: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyLite.yaml}
 
 rules:
  #- SCRIPT,quic,REJECT
