@@ -34,8 +34,7 @@ dns:
 ###建立锚点
     
 # 策略组引用相关参数
-pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
-#pr: &pr {type: select, proxies: [🚀 手动切换,  🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, ♻️ 自动选择, DIRECT]}
+pr: &pr {type: select, proxies: [手动切换, 香港节点, 美国节点, 狮城节点, 日本节点,  台湾节点, 自动选择, DIRECT]}
 
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
