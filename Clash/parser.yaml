@@ -324,15 +324,15 @@ parsers: # array
         ProxyMedia:      # 国际媒体
           type: http
           behavior: classical
-          url:  https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml}
+          url:  https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
           path: ./ruleset/ProxyMedia.yaml
           interval: 86400
 
-        ProxyLite:        # 代理网站
+        ProxyGFWlist:        # 代理网站
           type: http
           behavior: classical
           url:  https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
-          path: ./ruleset/ProxyLite.yaml
+          path: ./ruleset/ProxyGFWlist.yaml
           interval: 86400
 
       prepend-rules: # 添加规则
