@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/8/1
+# 最后更新时间: 2023/8/5
 #
 # ================
 
@@ -89,10 +89,10 @@ rule-providers:
  ProxyMedia: {<<: *c, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml}
 
  #代理网站
- Proxy: {<<: *d, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml}
+ Proxy: {<<: *c, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml}
 
  # 局域网
- Lan: {<<: *d, url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt}
+ Lan: {<<: *i, url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt}
 
 rules:
  - RULE-SET,ProxyMedia,国外网站
