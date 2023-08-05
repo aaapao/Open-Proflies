@@ -8,8 +8,7 @@
 # ================
 
 parsers: # array
-  - reg: ^.*$                 
-  # ^.*$ 匹配所有订阅，或  - url: https://example.com/profile.yaml 指定订阅
+  - reg: ^.*$                 # ^.*$ 匹配所有订阅，或  - url: https://example.com/profile.yaml 指定订阅
     code: |                   # 删除服务商提供的策略组和规则
       module.exports.parse = (raw, { yaml }) => {
         const rawObj = yaml.parse(raw)
