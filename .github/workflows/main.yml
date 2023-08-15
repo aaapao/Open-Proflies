@@ -1,4 +1,4 @@
-name: Copy FILTER Rules
+name: Cpoy
 
 on:
   workflow_dispatch:
@@ -22,8 +22,8 @@ jobs:
     - name: Download and add files
       run: |
         files=(
-          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
           "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
+          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
           # Add more URLs here
         )
         
@@ -38,5 +38,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add Rules/*
-        git commit -m "Copy FILTER Rules"
+        git commit -m "Add multiple files"
         git push origin HEAD
