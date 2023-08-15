@@ -12,10 +12,15 @@ jobs:
     steps:
     
     - name: Checkout source repo
-      uses: actions/checkout@v3.5.3
+      uses: actions/checkout@v2  # You can continue to use this version
       with:
         repository: Repcz/ACL4SSR
         ref: master
+
+    - name: Set up Git
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
 
     - name: Copy files
       run: |
@@ -23,21 +28,15 @@ jobs:
         cp ./Clash/Apple.list ./Repcz/Open-Profiles/Surge/Rules/apple.list
         cp ./Clash/ProxyGFWlist.list ./Repcz/Open-Profiles/Surge/Rules/proxy.list
 
-    - name: Configure Git
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-      working-directory: ./Repcz/Open-Profiles/Surge/Rules
-
     - name: Commit changes
       run: |
+        cd ./Repcz/Open-Profiles/Surge/Rules
         git add -A
         git commit -m "Copy files from Repcz/ACL4SSR"
-      working-directory: ./Repcz/Open-Profiles/Surge/Rules
 
     - name: Push changes
       run: |
-        git push origin master
+        cd ./Repcz/Open-Profiles/Surge/Rules
+        git push https://github.com/Repcz/Open-Profiles.git master
       env:
         GITHUB_TOKEN: ${{ secrets.COPY_TOKEN }}
-      working-directory: ./Repcz/Open-Profiles/Surge/Rules
