@@ -1,42 +1,42 @@
-name: Copy Files
+name: Copy FILTER Rules
 
 on:
   workflow_dispatch:
 
 jobs:
-
-  copy:
-
+  download-and-add-multiple-files:
     runs-on: ubuntu-latest
-
-    steps:
     
-    - name: Checkout source repo
-      uses: actions/checkout@v2  # You can continue to use this version
+    steps:
+    - name: Checkout target repository
+      uses: actions/checkout@v2
       with:
-        repository: Repcz/ACL4SSR
-        ref: master
+        repository: Repcz/Open-Profiles
+        path: open-profiles-repo
 
-    - name: Set up Git
+    - name: Create target directory
       run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-
-    - name: Copy files
+        mkdir -p open-profiles-repo/Rules
+        ls -R open-profiles-repo/Rules
+    
+    - name: Download and add files
       run: |
-        mkdir -p ./Repcz/Open-Profiles/Surge/Rules
-        cp ./Clash/Apple.list ./Repcz/Open-Profiles/Surge/Rules/apple.list
-        cp ./Clash/ProxyGFWlist.list ./Repcz/Open-Profiles/Surge/Rules/proxy.list
-
-    - name: Commit changes
+        files=(
+          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
+          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
+          # Add more URLs here
+        )
+        
+        for url in "${files[@]}"; do
+          filename=$(basename "$url")
+          curl -L -o "open-profiles-repo/Rules/$filename" "$url"
+        done
+    
+    - name: Add and Commit
       run: |
-        cd ./Repcz/Open-Profiles/Surge/Rules
-        git add -A
-        git commit -m "Copy files from Repcz/ACL4SSR"
-
-    - name: Push changes
-      run: |
-        cd ./Repcz/Open-Profiles/Surge/Rules
-        git push https://github.com/Repcz/Open-Profiles.git master
-      env:
-        GITHUB_TOKEN: ${{ secrets.COPY_TOKEN }}
+        cd open-profiles-repo
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Rules/*
+        git commit -m "Copy FILTER Rules"
+        git push origin HEAD
