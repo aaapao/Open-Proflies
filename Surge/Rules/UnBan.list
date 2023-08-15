@@ -1,5 +1,10 @@
 # Unbreak 白名单 不应该被广告链接的网站
 
+DOMAIN-SUFFIX,subhd.tv
+DOMAIN,ad.12306.cn
+DOMAIN,amdc.m.taobao.com
+DOMAIN,ca.iadsdk.apple.com
+
 # Epicgames
 DOMAIN-SUFFIX,ol.epicgames.com
 
