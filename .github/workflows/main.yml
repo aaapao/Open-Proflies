@@ -1,10 +1,10 @@
-name: Cpoy
+name: Download and Add File to Open-Profiles Repo
 
 on:
   workflow_dispatch:
 
 jobs:
-  download-and-add-multiple-files:
+  download-and-add-file:
     runs-on: ubuntu-latest
     
     steps:
@@ -19,24 +19,19 @@ jobs:
         mkdir -p open-profiles-repo/Rules
         ls -R open-profiles-repo/Rules
     
-    - name: Download and add files
+    - name: Download file
       run: |
-        files=(
-          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
-          "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
-          # Add more URLs here
-        )
-        
-        for url in "${files[@]}"; do
-          filename=$(basename "$url")
-          curl -L -o "open-profiles-repo/Rules/$filename" "$url"
-        done
+        curl -L -o Apple.list "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
+    
+    - name: Move file to target directory
+      run: |
+        mv Apple.list open-profiles-repo/Rules/
     
     - name: Add and Commit
       run: |
         cd open-profiles-repo
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add Rules/*
-        git commit -m "Add multiple files"
+        git add Rules/Apple.list
+        git commit -m "Add file"
         git push origin HEAD
