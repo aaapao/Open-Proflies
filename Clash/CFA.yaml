@@ -44,8 +44,8 @@ dns:
 ###建立锚点
     
 # 策略组引用相关参数
-pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
-#pr: &pr {type: select, proxies: [🚀 手动切换,  🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, ♻️ 自动选择, DIRECT]}
+pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
+#pr: &pr {type: select, proxies: [🚀 手动切换,  🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, ♻️ 自动选择, DIRECT]}
 
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
@@ -90,7 +90,7 @@ proxy-groups:
 
  - {name: 📹 国际媒体, <<: *pr}
 
- - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇺🇲 美国节点]}
+ - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇺🇸 美国节点]}
 
  - {name: 🧩 微软服务, <<: *pr}
 
@@ -100,7 +100,7 @@ proxy-groups:
 
  - {name: 🐦 推特消息, <<: *pr}
  
- - {name: 🤖 OpenAI, type: select, proxies: [🇺🇲 美国节点, 🚀 手动切换]}
+ - {name: 🤖 OpenAI, type: select, proxies: [🇺🇸 美国节点, 🚀 手动切换]}
 
  - {name: 🎮 游戏平台, <<: *pr}
   
@@ -116,7 +116,7 @@ proxy-groups:
  
  - {name: 🇭🇰 香港节点, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
- - {name: 🇺🇲 美国节点, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+ - {name: 🇺🇸 美国节点, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
  - {name: 🇸🇬 狮城节点, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
