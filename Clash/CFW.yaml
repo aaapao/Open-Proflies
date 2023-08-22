@@ -4,7 +4,7 @@
 #
 # 此配置仅适用于Clash for Windows,其他Clash客户端未经测试
 #
-# 最后更新时间: 2023/8/19
+# 最后更新时间: 2023/8/22
 #
 # ================
 
@@ -48,8 +48,7 @@ cfw-bypass: ['localhost', '*.local', 'captive.apple.com', 'e.crashlytics.com', '
 ###建立锚点
     
 # 策略组引用相关参数
-pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
-#pr: &pr {type: select, proxies: [🚀 手动切换,  🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, 🇬🇧 英国节点, 🇦🇺 澳洲节点, 🇮🇳 印度节点, ♻️ 自动选择, DIRECT]}
+pr: &pr {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, ⚠️ 故障转移, DIRECT]}
 
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
@@ -88,13 +87,13 @@ proxy-groups:
 
  #分流分组
 
- - {name: 🚀 手动切换, <<: *select}
+ - {name: 🚀 手动切换, type: select, use: [Subscribe], proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT]}
 
  - {name: 🌏 国外网站, <<: *pr}
 
  - {name: 📹 国际媒体, <<: *pr}
 
- - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇺🇸 美国节点]}
+ - {name: 🍎 苹果服务, <<: *pr}
 
  - {name: 🧩 微软服务, <<: *pr}
 
@@ -104,7 +103,7 @@ proxy-groups:
 
  - {name: 🐦 推特消息, <<: *pr}
  
- - {name: 🤖 OpenAI, type: select, proxies: [🇺🇸 美国节点, 🚀 手动切换]}
+ - {name: 🤖 OpenAI, <<: *pr}
 
  - {name: 🎮 游戏平台, <<: *pr}
   
@@ -128,13 +127,9 @@ proxy-groups:
 
  - {name: 🇨🇳 台湾节点, <<: *auto, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"}
 
- #- {name: 🇬🇧 英国节点, <<: *auto, filter: "(?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)"}
-  
- #- {name: 🇦🇺 澳洲节点, <<: *auto, filter: "(?i)🇦🇺|澳大利亚|(\b(AU|Australia)\b)"}
- 
- #- {name: 🇮🇳 印度节点, <<: *auto, filter: "(?i)🇮🇳|印度|班加罗尔|孟买|(\b(Mumbai|IN|India)\b)"}
- 
  - {name: ♻️ 自动选择, <<: *auto}
+
+ - {name: ⚠️ 故障转移, <<: *fallback}
 
 rule-providers:
 
@@ -177,6 +172,7 @@ rule-providers:
 
  # 中国大陆
  ChinaIP: {<<: *i, path: ./ruleset/ChinaIP.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/soffchen/GeoIP2-CN/release/clash-rule-provider.yml}
+ ChinaDomain: {<<: *c, path: ./ruleset/ChinaDomain.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml}
 
 # 国际媒体
  ProxyMedia: {<<: *c, path: ./ruleset/ProxyMedia.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml}
@@ -201,6 +197,7 @@ rules:
   - RULE-SET,Game,🎮 游戏平台
   - RULE-SET,ProxyMedia,📹 国际媒体
   - RULE-SET,ProxyGFWlist,🌏 国外网站
+  - RULE-SET,ChinaDomian,🌏 国内网站
   - RULE-SET,ChinaIP,🌏 国内网站
   - GEOIP,CN,🌏 国内网站
   - MATCH,🐟 漏网之鱼
