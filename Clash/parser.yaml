@@ -3,7 +3,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/8/19
+# 最后更新时间: 2023/8/27
 #
 # ================
 
@@ -32,18 +32,15 @@ parsers: # array
           ipv6: false              # IPV6解析开关；如果为false，将返回ipv6结果为空
           enhanced-mode: fake-ip   # 模式：redir-host或fake-ip
           listen: 0.0.0.0:53       # DNS监听地址
-          default-nameserver:      # 解析非IP的dns用的dns服务器,只支持纯IP
-             - 223.5.5.5
-             - 119.29.29.29
+          default-nameserver: [223.5.5.5, 119.29.29.29]
+                                   # 解析非IP的dns用的dns服务器,只支持纯IP
           fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
           fake-ip-filter: ['*.lan', 'cable.auth.com', '*.msftconnecttest.com', '*.msftncsi.com', 'network-test.debian.org', 'detectportal.firefox.com', 'resolver1.opendns.com', '*.srv.nintendo.net', '*.stun.playstation.net', 'xbox.*.microsoft.com', '*.xboxlive.com', 'stun.*', 'global.turn.twilio.com', 'global.stun.twilio.com', 'localhost.*.qq.com', 'localhost.*.weixin.qq.com', '*.logon.battlenet.com.cn', '*.logon.battle.net', '*.blzstatic.cn', 'music.163.com', '*.music.163.com', '*.126.net', 'musicapi.taihe.com', 'music.taihe.com', 'songsearch.kugou.com', 'trackercdn.kugou.com', '*.kuwo.cn', 'api-jooxtt.sanook.com', 'api.joox.com', 'joox.com', 'y.qq.com', '*.y.qq.com', 'streamoc.music.tc.qq.com', 'mobileoc.music.tc.qq.com', 'isure.stream.qqmusic.qq.com', 'dl.stream.qqmusic.qq.com', 'aqqmusic.tc.qq.com', 'amobile.music.tc.qq.com', '*.xiami.com', '*.music.migu.cn', 'music.migu.cn', 'proxy.golang.org', '*.mcdn.bilivideo.cn', '*.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '*.jegotrip.com.cn', '*.icitymobile.mobi', '*.pingan.com.cn', '*.cmbchina.com', 'pool.ntp.org', '*.pool.ntp.org', 'ntp.*.com', 'time.*.com', 'ntp?.*.com', 'time?.*.com', 'time.*.gov', 'time.*.edu.cn', '*.ntp.org.cn', 'PDC._msDCS.*.*', 'DC._msDCS.*.*', 'GC._msDCS.*.*']
                                   # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
-          nameserver:             # 默认DNS服务器，支持udp/tcp/dot/doh/doq
-             - 223.5.5.5
-             - 119.29.29.29
-          fallback:               # 解析国外域名的DNS服务器
-             - https://doh.pub/dns-query
-             - https://dns.alidns.com/dns-query
+          nameserver: [223.5.5.5, 119.29.29.29]
+                                  # 默认DNS服务器，支持udp/tcp/dot/doh/doq
+          fallback: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]     
+                                  # 解析国外域名的DNS服务器
           fallback-filter:        # 配置 fallback 使用条件
             geoip: true           # 配置是否使用 geoip
             geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
@@ -54,123 +51,60 @@ parsers: # array
 
       prepend-proxy-groups: # 建立策略组
 
-        - name: 🚀 手动切换
-          type: select
-
         - name: 🌏 国外网站
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 📹 国际媒体
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🍎 苹果服务
           type: select
-          proxies:
-            - DIRECT
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [DIRECT, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🧩 微软服务
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🌌 谷歌服务
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 📟 电报消息
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🐦 推特消息
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🤖 OpenAI
           type: select
-          proxies:
-            - 🇺🇸 美国节点
-            - 🚀 手动切换
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 🎮 游戏平台
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
 
         - name: 📺 哔哩哔哩
           type: select
-          proxies:
-            - DIRECT
-            - 🇭🇰 香港节点
-            - 🇨🇳 台湾节点
+          proxies: [DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点, ]
 
         - name: 🌏 国内网站
           type: select
-          proxies:
-            - DIRECT
-            - 🚀 手动切换
+          proxies: [DIRECT, 🚀 手动切换]
 
         - name: 🛑 AdBlock
           type: select
-          proxies:
-            - REJECT
-            - DIRECT
+          proxies: [REJECT, DIRECT]
 
         - name: 🐟 漏网之鱼
           type: select
-          proxies:
-            - 🚀 手动切换
-            - 🇭🇰 香港节点
-            - 🇺🇸 美国节点
-            - 🇸🇬 狮城节点
-            - 🇯🇵 日本节点
-            - 🇨🇳 台湾节点
+          proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT, 🚀 手动切换, ⚠ 故障转移]
+
+        - name: 🚀 手动切换
+          type: select
 
         - name: 🇭🇰 香港节点
           type: url-test # select/url-test/fallback/laod-balance
@@ -212,8 +146,17 @@ parsers: # array
           proxies:
             - DIRECT
 
+        - name: ⚠ 故障转移
+          type: fallback # select/url-test/fallback/laod-balance
+          url: http://www.gstatic.com/generate_204 
+          interval: 300
+          tolerance: 100 
+          proxies:
+            - DIRECT
+
       commands:
          - proxy-groups.🚀 手动切换.proxies=[]proxyNames
+         - proxy-groups.⚠ 故障转移.proxies=[]proxyNames
          - proxy-groups.🇭🇰 香港节点.proxies=[]proxyNames|^(?!.*游戏).*(香港|HK|🇭🇰)+(.*)$
          - proxy-groups.🇺🇸 美国节点.proxies=[]proxyNames|^(?!.*游戏).*(美国|US|🇺🇸|American)+(.*)$
          - proxy-groups.🇸🇬 狮城节点.proxies=[]proxyNames|^(?!.*游戏).*(新加坡|狮城|🇸🇬|SG|Singapore)+(.*)$
@@ -224,7 +167,7 @@ parsers: # array
 
         Direct:           # 规则修正
           type: http
-          behavior: domain
+          behavior: classical
           url:  https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml
           path: ./ruleset/Direct.yaml
           interval: 86400
