@@ -186,7 +186,7 @@ rules:
   - RULE-SET,Game,🎮 游戏平台
   - RULE-SET,ProxyMedia,📹 国际媒体
   - RULE-SET,ProxyGFWlist,🌏 国外网站
-  - RULE-SET,ChinaDomian,🌏 国内网站
+  - RULE-SET,ChinaDomain,🌏 国内网站
   - RULE-SET,ChinaIP,🌏 国内网站
   - GEOIP,CN,🌏 国内网站
   - MATCH,🐟 漏网之鱼
