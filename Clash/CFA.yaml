@@ -4,7 +4,7 @@
 #
 # 此配置仅适用于Clash for Windows,其他Clash客户端未经测试
 #
-# 最后更新时间: 2023/9/1
+# 最后更新时间: 2023/9/15
 #
 # ================
 
@@ -131,12 +131,9 @@ rule-providers:
 
  # 局域网   
  Lan: {<<: *c, path: ./ruleset/Lan.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml}
-
- # 下载服务
- Download: {<<: *c, path: ./ruleset/Download.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Download/Download.yaml}
-    
+   
  #广告拦截
- Anti-AD: {<<: *d, path: ./ruleset/anti-ad-clash.yaml, url: https://anti-ad.net/clash.yaml}
+ AD@dler-io: {<<: *c, path: ./ruleset/AD.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Reject.yaml}
 
   # 苹果服务
  Apple: {<<: *c, path: ./ruleset/Apple.yaml, url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Apple.yaml}
@@ -176,8 +173,7 @@ rules:
   #- SCRIPT,quic,REJECT
   - RULE-SET,Direct,DIRECT
   - RULE-SET,Lan,DIRECT
-  - RULE-SET,Download,DIRECT
-  - RULE-SET,Anti-AD,🛑 AdBlock
+  - RULE-SET,AD@dler-io,🛑 AdBlock
   - RULE-SET,OpenAI,🤖 OpenAI
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Microsoft,🧩 微软服务
