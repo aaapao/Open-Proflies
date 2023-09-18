@@ -2,7 +2,7 @@
 # TG:https://t.me/QVQ_Channel
 # 以 ';' 或 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 最后更新时间: 2023/7/28
+# 最后更新时间: 2023/9/18
 #
 # ================
 
@@ -11,7 +11,7 @@
 #redir-port: 7892     # Linux 和 macOS 的 redir 代理端口
 mixed-port: 7893      # 混合端口 HTTP和SOCKS5用一个端口
 geodata-mode: true    #【Meta专属】使用geoip.dat数据库(默认：false使用mmdb数据库)
-tcp-concurrent: false  #【Meta专属】TCP 并发连接所有 IP, 将使用最快握手的 TCP
+tcp-concurrent: false #【Meta专属】TCP 并发连接所有 IP, 将使用最快握手的 TCP
 allow-lan: true       # 允许局域网的连接（可用来共享代理）
 bind-address: "*"     # 仅在将allow-lan设置为true时适用
                       # #"*": 绑定所有IP地址
@@ -41,15 +41,6 @@ sniffer:               # 嗅探域名 可选配置
     HTTP:
       ports: [80, 8080-8880]
       override-destination: true
-  force-domain:        # 强制对此域名进行嗅探
-     - "+.netflix.com"
-     - "+.nflxvideo.net"
-     - "+.amazonaws.com"
-     - "+.media.dssott.com"
-     - 'google.com'
-  sniffing:            # 需要嗅探协议
-     - tls
-     - http
       
 tun:                   # Tun 配置
   enable: true
@@ -67,23 +58,8 @@ dns:
   ipv6: false              # IPV6解析开关；如果为false，将返回ipv6结果为空
   enhanced-mode: fake-ip   # 模式：redir-host或fake-ip
   listen: 0.0.0.0:53       # DNS监听地址
-  default-nameserver:      # 解析非IP的dns用的dns服务器,只支持纯IP
-     - 223.5.5.5
-     - 119.29.29.29
   fake-ip-range: 198.18.0.1/16    # Fake-IP解析地址池
   fake-ip-filter: ['*.lan', 'cable.auth.com', '*.msftconnecttest.com', '*.msftncsi.com', 'network-test.debian.org', 'detectportal.firefox.com', 'resolver1.opendns.com', '*.srv.nintendo.net', '*.stun.playstation.net', 'xbox.*.microsoft.com', '*.xboxlive.com', 'stun.*', 'global.turn.twilio.com', 'global.stun.twilio.com', 'localhost.*.qq.com', 'localhost.*.weixin.qq.com', '*.logon.battlenet.com.cn', '*.logon.battle.net', '*.blzstatic.cn', 'music.163.com', '*.music.163.com', '*.126.net', 'musicapi.taihe.com', 'music.taihe.com', 'songsearch.kugou.com', 'trackercdn.kugou.com', '*.kuwo.cn', 'api-jooxtt.sanook.com', 'api.joox.com', 'joox.com', 'y.qq.com', '*.y.qq.com', 'streamoc.music.tc.qq.com', 'mobileoc.music.tc.qq.com', 'isure.stream.qqmusic.qq.com', 'dl.stream.qqmusic.qq.com', 'aqqmusic.tc.qq.com', 'amobile.music.tc.qq.com', '*.xiami.com', '*.music.migu.cn', 'music.migu.cn', 'proxy.golang.org', '*.mcdn.bilivideo.cn', '*.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '*.jegotrip.com.cn', '*.icitymobile.mobi', '*.pingan.com.cn', '*.cmbchina.com', 'pool.ntp.org', '*.pool.ntp.org', 'ntp.*.com', 'time.*.com', 'ntp?.*.com', 'time?.*.com', 'time.*.gov', 'time.*.edu.cn', '*.ntp.org.cn', 'PDC._msDCS.*.*', 'DC._msDCS.*.*', 'GC._msDCS.*.*']
                           # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
-  nameserver:             # 默认DNS服务器，支持udp/tcp/dot/doh/doq
-     - 223.5.5.5
-     - 119.29.29.29
-  fallback:               # 解析国外域名的DNS服务器
-     - https://doh.pub/dns-query
-     - https://dns.alidns.com/dns-query
-  fallback-filter:        # 配置 fallback 使用条件
-    geoip: true           # 配置是否使用 geoip
-    geoip-code: CN        # 当 nameserver 域名的 IP 查询 geoip 库为 CN 时，不使用 fallback 中的 DNS 查询结果
-    geosite:              # 配置强制 fallback，优先于 IP 判断，具体分类自行查看 geosite 库
-      - gfw
-      - geolocation-!cn
-    ipcidr:               # 在这个网段内的 IP 地址会被考虑为被污染的 IP
-      - 240.0.0.0/4
+  nameserver: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]               
+
